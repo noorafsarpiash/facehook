@@ -5,11 +5,17 @@ import Notification from '../../assets/icons/notification.svg';
 import Avatar from '../../assets/images/avatars/avatar_1.png';
 import Logout from '../auth/Logout';
 import { useAuth } from '../../hooks/useAuth';
-
 import { Link } from 'react-router-dom';
+import { useProfile } from "../../hooks/useProfile";
+
+
 
 const Header = () => {
     const { auth } = useAuth();
+    const { state } = useProfile();
+
+    const user = state?.user ?? auth?.user;
+
     return (
         <nav className="sticky top-0 z-50 border-b border-[#3F3F3F] bg-[#1E1F24] py-4">
             <div className="container flex flex-col items-center justify-between gap-6 sm:flex-row">
@@ -34,9 +40,9 @@ const Header = () => {
                     <Link
                         to="/me"
                         className="flex-center !ml-8 gap-3">
-                        <span className="text-lg font-medium lg:text-xl">{auth?.user?.firstName}</span>
-                        <img className="max-h-[32px] max-w-[32px] lg:max-h-[44px] lg:max-w-[44px]"
-                            src={Avatar} alt="avatar" />
+                        <span className="text-lg font-medium lg:text-xl">{user?.firstName} {' '} {user?.lastName} </span>
+                        <img className="max-h-[32px] max-w-[32px] lg:max-h-[44px] lg:max-w-[44px] rounded-full"
+                            src={`${import.meta.env.VITE_SERVER_BASE_URL}/${user.avatar}`} alt="avatar" />
                     </Link>
                 </div>
             </div>

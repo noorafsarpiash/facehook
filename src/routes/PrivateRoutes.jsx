@@ -8,7 +8,7 @@ const PrivateRoutes = () => {
     return (
         <>
             {
-                auth.user ? (
+                auth.authToken ? (
                     <>
                         <ProfileProvider>
                             <Header />
