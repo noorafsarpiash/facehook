@@ -4,6 +4,7 @@ export const getDateDifferenceFromNow = (fromDate) => {
     difference = difference / 1000;
     let hourDifference = Math.floor(difference / 3600);
     difference -= hourDifference * 3600;
+    hourDifference = Math.floor(hourDifference / 3600)
     let minuteDifference = Math.floor(difference / 60);
     difference -= minuteDifference * 60;
     

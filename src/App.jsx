@@ -23,7 +23,7 @@ function App() {
         </Route>
 
         <Route element={<LoginPage />} path='/login' />
-        <Route element={<RegistrationPage />} path='/registration' />
+        <Route element={<RegistrationPage />} path='/register' />
 
         <Route element={<NotFoundPage />} path='*' />
       </Routes>

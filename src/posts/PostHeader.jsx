@@ -38,7 +38,7 @@ const PostHeader = ({ post }) => {
 
 
             <div className="relative">
-                <button onClick={toggleAction()}>
+                <button onClick={toggleAction}>
                     <img src={ThreeDotsIcon} alt="3dots of Action" />
                 </button>
 

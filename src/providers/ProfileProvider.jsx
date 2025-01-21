@@ -1,5 +1,5 @@
 import { ProfileContext } from "../context";
-import { Children, useReducer } from "react";
+import { children, useReducer } from "react";
 import { profileReducer, initialState } from "../reducers/ProfileReducers";
 
 
