@@ -1,17 +1,42 @@
+import { useState } from "react"
+import useAxios from "../hooks/useAxios";
 import LikeIcon from "../assets/icons/like.svg"
 import CommentIcon from "../assets/icons/comment.svg"
 import ShareIcon from "../assets/icons/share.svg"
+import LikeFilledIcon from "../assets/icons/thumb-up-filled-gesture.svg";
+import { useAuth } from "../hooks/useAuth";
 
-const PostActions = ({ postId, commentCount }) => {
+const PostActions = ({ post, commentCount }) => {
+    const { auth } = useAuth();
+    const [liked, setLiked] = useState(post?.likes?.includes(auth?.user?.id));
+    const { api } = useAxios();
+
+    const handleLike = async () => {
+
+        try {
+
+            const response = await api.patch(`${import.meta.env.VITE_SERVER_BASE_URL}/posts/${post.id}/like`);
+
+            if (response.status === 200) {
+                setLiked(true)
+            }
+        } catch (error) {
+            console.error(error);
+            setLiked(false)
+        }
+
+    }
+
     return (
         <>
             <div className="flex items-center justify-between py-6 lg:px-10 lg:py-8">
 
                 <button
                     className="flex-center gap-2 text-xs font-bold text-[#B8BBBF] hover:text-white lg:text-sm"
+                    onClick={handleLike}
                 >
-                    <img src={LikeIcon} alt="Like" />
-                    <span>Like</span>
+                    <img className="w-6" src={liked ? LikeFilledIcon : LikeIcon} alt="Like" />
+                    {!liked && < span > Like</span>}
                 </button>
 
 
@@ -28,7 +53,7 @@ const PostActions = ({ postId, commentCount }) => {
                     <img src={ShareIcon} alt="Share" />
                     <span>Share</span>
                 </button>
-            </div>
+            </div >
 
 
 
