@@ -9,7 +9,7 @@ const PostCommentList = ({ comments }) => {
                 comments && comments.map((comment) => (
 
                     <>
-                        <div className="flex items-center gap-3 pt-4"
+                        <div key={comment.id} className="flex items-center gap-3 pt-4"
 
                         >
                             <img
